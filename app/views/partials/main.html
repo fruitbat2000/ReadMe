@@ -1,0 +1,43 @@
+<div ng-include="'partials/navbar'"></div>
+
+<section class="search intro">
+  <!-- if logged in  -->
+  <div ng-show="loggedIn">
+    <p>Welcome back {{user.name}}</p>
+    <h2>Add another author to your list:</h2>
+  </div>
+  <!-- else -->
+  <div ng-hide="loggedIn">
+    <p>Welcome to Read Me, the app that lets you track new releases from your favourite authors.</p>
+    <p>Already a member?</p>
+    <a href="/login" class="btn btn-primary">Sign In</a>
+    <h2>Search for your favourite author:</h2>
+  </div>
+  <!-- endif -->
+  <div class="search-container" ng-controller="SearchCtrl">
+    <input type="search" ng-keydown="search($event)" placeholder="Author name" class="input-lg" name="search-loggedin">
+    <search-results ng-show="haveResults"></search-results>
+  </div>
+</section>
+<section class="latest">
+  <div ng-show="loggedIn">
+    <h3>Latest releases from your watched authors</h3>
+    <ul class="list-unstyled list-inline">
+      <li ng-repeat="book in newReleases">
+        <a href="/detail/{{book.ASIN}}">
+          <img src="{{book.MediumImage.URL}}" alt="{{book.ItemAtrributes.Title}}">
+          <p>{{book.ItemAttributes.ProductGroup}}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <h3>Latest new releases in Fiction</h3>
+  <ul class="list-unstyled list-inline">
+    <li ng-repeat="book in newReleases">
+      <a href="/detail/{{book.ASIN}}">
+        <img src="{{book.MediumImage.URL}}" alt="{{book.ItemAtrributes.Title}}">
+        <p>{{book.ItemAttributes.ProductGroup}}</p>
+      </a>
+    </li>
+  </ul>
+</section>

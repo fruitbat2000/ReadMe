@@ -1,0 +1,6 @@
+<h3>Search Results</h3>
+<ul class="list-unstyled">
+	<li ng-repeat="result in searchResults"><!--<img src="{{result.SmallImage.URL}}" alt="{{result.ItemAttributes.Title}}">-->{{result.ItemAttributes.Title}}, {{result.ItemAttributes.Author}}. Format: {{result.ItemAttributes.Binding}}<button ng-disabled="!loggedIn" ng-click="addAuthor($event)" class="btn btn-xs btn-warning" data-author="{{result.ItemAttributes.Author}}">Watch Author</button></li>
+	<!-- needs a tooltip to explain that you need to be logged in to watch authors -->
+</ul>
+<p>See <a href="/full-results/{{author}}">more results</a></p>
